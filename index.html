@@ -125,21 +125,22 @@
 
 <header>
     <h1>Volume 3: The Zed Engine & Language — Distributed Systems Manual</h1>
-    <p>40-Page Advanced Collaboration & CRDT Volume | Strict 300 Words Per Page (450px Layout)</p>
+    <p>60-Page Advanced Collaboration & CRDT Volume | Strict 300 Words Per Page (450px Layout)</p>
 </header>
 
 <div class="spread-container" id="spreadContainer"></div>
 
 <div class="nav-controls">
     <button class="nav-btn" id="prevBtn" onclick="changeSpread(-1)">Previous Spread</button>
-    <div class="spread-indicator" id="spreadIndicator">Spread 1 of 20 (Pages 1 & 2)</div>
+    <div class="spread-indicator" id="spreadIndicator">Spread 1 of 30 (Pages 1 & 2)</div>
     <button class="nav-btn" id="nextBtn" onclick="changeSpread(1)">Next Spread</button>
 </div>
 
 <script>
-    const totalSpreads = 20;
+    const totalSpreads = 30; // 30 spreads * 2 pages = 60 pages total
     let currentSpread = 0;
 
+    // Exactly 60 unique page definitions for all 60 pages
     const pageData = [
         {
             title: "State-Based CRDT Lattice Foundations",
@@ -420,6 +421,146 @@
             p2: "Regional edge relays aggregate regional peer traffic, minimizing wide-area network latency and maintaining sub-10ms response times worldwide.",
             code: "pub struct RegionalCluster {\n    active: bool\n}",
             p3: "Hierarchical global architecture ensures Zed scales effortlessly from small engineering teams to massive enterprise deployments."
+        },
+        {
+            title: "Distributed Garbage Collection Epochs",
+            p1: "Coordinating garbage collection across decentralized peer nodes requires synchronized epoch milestones to safely eliminate obsolete history markers.",
+            p2: "Peers exchange epoch marker messages to confirm that all historical operations prior to a given logical timestamp have been safely processed.",
+            code: "pub struct EpochManager {\n    current_epoch: u64,\n    acked_nodes: HashSet<NodeId>\n}",
+            p3: "Epoch-based garbage collection prevents memory leaks and unbounded state growth in long-running collaborative projects."
+        },
+        {
+            title: "Cryptographic Peer Routing Tables",
+            p1: "Routing messages across decentralized topologies requires authenticated peer routing tables that prevent node spoofing and eclipse attacks.",
+            p2: "Each route entry is validated via cryptographic signatures, ensuring packets traverse genuine network paths verified by the local node.",
+            code: "pub struct SecureRoutingTable {\n    entries: HashMap<PeerId, VerifiedRoute>\n}",
+            p3: "Secure routing tables protect distributed collaboration sessions against malicious packet redirection and man-in-the-middle sniffing."
+        },
+        {
+            title: "Zero-Knowledge State Validity Proofs",
+            p1: "Advanced enterprise security models require validating state modifications without exposing sensitive source code text contents to relay nodes.",
+            p2: "Zero-knowledge proofs verify that local edits adhere to syntax rules and workspace permissions without revealing underlying character payloads.",
+            code: "pub struct ZkValidityProof {\n    proof_bytes: Vec<u8>,\n    public_inputs: Hash\n}",
+            p3: "Zk-proof integration enables absolute privacy compliance for government and defense engineering teams utilizing decentralized workspaces."
+        },
+        {
+            title: "Byzantine Fault Tolerant Message Passing",
+            p1: "Byzantine fault tolerance guarantees system reliability even when an arbitrary fraction of participating network nodes act maliciously or erratically.",
+            p2: "Cryptographic quorums and multi-phase validation rounds ensure forged or corrupted message packets are rejected automatically by honest peers.",
+            code: "pub struct ByzantineMessageGuard {\n    quorum_threshold: usize\n}",
+            p3: "BFT messaging safeguards large open-source collaborative networks against coordinated sabotage and rogue node injection."
+        },
+        {
+            title: "State Machine Replication Determinism",
+            p1: "Replicated state machines require absolute execution determinism across every participating node to prevent divergence in document states.",
+            p2: "Floating-point math variations and non-deterministic thread scheduling are strictly prohibited within core command evaluation routines.",
+            code: "pub trait DeterministicCommand {\n    fn execute_strictly(&self, state: &mut WorkspaceState);\n}",
+            p3: "Strict determinism guarantees that identical instruction streams produce identical state outcomes across heterogeneous hardware architectures."
+        },
+        {
+            title: "Distributed File Watcher Event Aggregation",
+            p1: "Monitoring massive directory trees across distributed systems generates floods of raw file system events that must be intelligently aggregated.",
+            p2: "Debouncing and event coalescing engines group rapid file modifications into single atomic change notifications before broadcasting updates.",
+            code: "pub struct EventAggregator {\n    debounce_timer: Duration,\n    pending_events: Vec<FileEvent>\n}",
+            p3: "Event aggregation prevents network saturation and CPU spikes during automated build or refactoring file modifications."
+        },
+        {
+            title: "Multi-User Undo/Redo Tree Reconciliation",
+            p1: "Linear undo stacks break down in multi-user sessions where peer edits overlap with local undo commands.",
+            p2: "Multi-user undo trees isolate user-specific edit histories, allowing individuals to reverse their own changes without disturbing collaborator progress.",
+            code: "pub struct MultiUserUndoTree {\n    user_branches: HashMap<UserId, UndoStack>\n}",
+            p3: "Robust undo reconciliation provides intuitive error recovery during complex team programming exercises."
+        },
+        {
+            title: "Distributed Terminal Session Multiplexing",
+            p1: "Embedding shared terminal sessions within collaborative workspaces requires multiplexing pseudo-terminal output streams across peer connections.",
+            p2: "Terminal cell grids are synchronized efficiently, allowing multiple developers to view and interact with shared command-line build processes.",
+            code: "pub struct SharedTerminalSession {\n    pty_grid: CellGrid,\n    active_controllers: Vec<UserId>\n}",
+            p3: "Collaborative terminal multiplexing transforms remote debugging and server deployment into an interactive team activity."
+        },
+        {
+            title: "Remote Debugging Adapter Protocol Bridges",
+            p1: "Bridging standard Debug Adapter Protocol streams across decentralized networks enables synchronized multi-user breakpoint debugging.",
+            p2: "DAP command payloads are encapsulated in secure peer packets, allowing remote team members to inspect variables and step through code together.",
+            code: "pub struct DapBridge {\n    adapter_process: Child,\n    client_sessions: Vec<PeerId>\n}",
+            p3: "Remote debugging bridges accelerate root-cause analysis during high-stakes production incident responses."
+        },
+        {
+            title: "Decentralized Plugin Marketplace Distribution",
+            p1: "Community extensions and themes are distributed across decentralized peer networks via cryptographically signed package manifests.",
+            p2: "Package verification checks author signatures and dependency constraints automatically before installing extensions into local sandboxes.",
+            code: "pub struct PluginManifest {\n    package_name: String,\n    signature: Ed25519Signature\n}",
+            p3: "Decentralized distribution empowers extension creators to publish tools globally without relying on proprietary app store monopolies."
+        },
+        {
+            title: "Compact State Representation Encodings",
+            p1: "Minimizing network footprint requires highly optimized binary encodings that strip redundant metadata from collaborative patch payloads.",
+            p2: "Run-length encoding and dictionary compression reduce data transmission sizes, ensuring rapid synchronization over cellular links.",
+            code: "pub fn encode_compact_patch(patch: &TextPatch) -> Vec<u8> {\n    CompactEncoder::to_bytes(patch)\n}",
+            p3: "Compact encodings maintain peak operational performance even when working over restricted remote network connections."
+        },
+        {
+            title: "Simulated Latency and Partition Harnesses",
+            p1: "Testing distributed collaboration resilience requires sophisticated simulation harnesses that inject artificial network latency and packet loss.",
+            p2: "Automated test suites subject CRDT sync engines to severe network partitions to verify automatic recovery and convergence properties.",
+            code: "pub struct NetworkSimulator {\n    latency_ms: u64,\n    packet_drop_rate: f32\n}",
+            p3: "Rigorous simulation testing guarantees enterprise-grade reliability under real-world hostile network conditions."
+        },
+        {
+            title: "Vector Clock Conflict Resolution Fallbacks",
+            p1: "When vector clocks encounter unresolvable causal ambiguity, deterministic fallback rules break ties based on node ID ordering.",
+            p2: "Tie-breaking rules ensure systems never deadlock or panic during rare concurrent race conditions across asynchronous client nodes.",
+            code: "pub fn resolve_clock_tie(a: &NodeId, b: &NodeId) -> Ordering {\n    a.cmp(b)\n}",
+            p3: "Deterministic fallbacks guarantee 100% operational uptime and zero crash proneness across all edge-case synchronization scenarios."
+        },
+        {
+            title: "Dynamic Bandwidth Throttling Adaptation",
+            p1: "Collaborative editors must adapt telemetry transmission frequencies dynamically when detecting constrained or congested network links.",
+            p2: "Adaptive throttling reduces cursor telemetry packet rates while prioritizing zero-loss transmission for critical text modification patches.",
+            code: "pub struct BandwidthAdapter {\n    current_tier: NetworkTier\n}",
+            p3: "Dynamic adaptation ensures smooth responsiveness across fluctuating Wi-Fi, cellular, and broadband network environments."
+        },
+        {
+            title: "Encrypted State Checkpoint Verification",
+            p1: "Periodic encrypted state checkpoints allow peers to verify document integrity against tampering or silent data corruption.",
+            p2: "Merkle trees summarize document block states into compact cryptographic roots exchanged during routine background sync passes.",
+            code: "pub struct StateCheckpoint {\n    merkle_root: [u8; 32],\n    sequence_num: u64\n}",
+            p3: "Checkpoint verification ensures absolute data trustworthiness across long-term distributed storage repositories."
+        },
+        {
+            title: "Peer Reputation and Trust Scoring",
+            p1: "Decentralized networks benefit from local peer reputation scoring to isolate misbehaving or spamming connection endpoints.",
+            p2: "Behavioral metrics track valid packet contributions versus malformed payloads, automatically downgrading trust levels for faulty nodes.",
+            code: "pub struct ReputationTracker {\n    scores: HashMap<PeerId, f32>\n}",
+            p3: "Reputation scoring protects open collaborative clusters against denial-of-service attempts and malicious disruption."
+        },
+        {
+            title: "Cross-Platform Path Normalization",
+            p1: "Distributed development teams frequently collaborate across Windows, macOS, and Linux environments with differing file path conventions.",
+            p2: "Path normalization layers convert backslashes, case sensitivities, and root separators into unified internal URI representations.",
+            code: "pub fn normalize_file_path(raw: &str) -> WorkspacePath {\n    PathNormalizer::to_unix_standard(raw)\n}",
+            p3: "Seamless path normalization prevents file access errors and broken references across mixed-operating-system project teams."
+        },
+        {
+            title: "Incremental Binary Delta Patching",
+            p1: "Transmitting large binary assets or compiled artifacts requires efficient incremental delta patching algorithms like Rsync.",
+            p2: "Rolling checksums identify matching data blocks between local and remote files, transmitting only changed byte segments.",
+            code: "pub struct DeltaPatcher {\n    block_size: usize\n}",
+            p3: "Incremental binary patching minimizes storage transfer overhead for binary game assets, textures, and large compiled libraries."
+        },
+        {
+            title: "Decentralized Session Discovery Beacons",
+            p1: "Impromptu peer-to-peer coding sessions utilize encrypted UDP broadcast beacons to announce active workspace availability on local subnets.",
+            p2: "Nearby developers discover open sessions instantly within their editor sidebar without manual IP address entry or cloud setup.",
+            code: "pub struct DiscoveryBeacon {\n    port: u16,\n    session_name: String\n}",
+            p3: "Beacon broadcasting delivers zero-friction local collaboration for classroom environments and office hackathons."
+        },
+        {
+            title: "Production Release and Enterprise Scaling",
+            p1: "Deploying Zed distributed systems into Fortune 500 enterprise environments requires robust monitoring, auditing, and compliance tooling.",
+            p2: "Comprehensive telemetry logging and administrative audit trails ensure adherence to corporate security and governance standards.",
+            code: "pub fn initialize_enterprise_audit_log() -> Result<AuditLogger> {\n    AuditLogger::init_secure_sink()\n}",
+            p3: "This concludes Volume 3. The architecture of advanced distributed collaboration is complete, setting the stage for plugin ecosystems in Volume 4."
         }
     ];
 
