@@ -33,7 +33,7 @@
         }
         .spread-container {
             width: 1050px;
-            height: 300px;
+            height: 450px;
             background-color: #ffffff;
             box-sizing: border-box;
             padding: 35px 45px;
@@ -125,22 +125,22 @@
 
 <header>
     <h1>Volume 3: The Zed Engine & Language — Distributed Systems Manual</h1>
-    <p>60-Page Advanced Collaboration & CRDT Volume | Strict 300 Words Per Page (450px Layout)</p>
+    <p>80-Page Advanced Collaboration & CRDT Volume | Strict 300 Words Per Page (450px Layout)</p>
 </header>
 
 <div class="spread-container" id="spreadContainer"></div>
 
 <div class="nav-controls">
     <button class="nav-btn" id="prevBtn" onclick="changeSpread(-1)">Previous Spread</button>
-    <div class="spread-indicator" id="spreadIndicator">Spread 1 of 30 (Pages 1 & 2)</div>
+    <div class="spread-indicator" id="spreadIndicator">Spread 1 of 40 (Pages 1 & 2)</div>
     <button class="nav-btn" id="nextBtn" onclick="changeSpread(1)">Next Spread</button>
 </div>
 
 <script>
-    const totalSpreads = 30; // 30 spreads * 2 pages = 60 pages total
+    const totalSpreads = 40; // 40 spreads * 2 pages = 80 pages total
     let currentSpread = 0;
 
-    // Exactly 60 unique page definitions for all 60 pages
+    // Exactly 80 unique page definitions for all 80 pages
     const pageData = [
         {
             title: "State-Based CRDT Lattice Foundations",
@@ -426,119 +426,119 @@
             title: "Distributed Garbage Collection Epochs",
             p1: "Coordinating garbage collection across decentralized peer nodes requires synchronized epoch milestones to safely eliminate obsolete history markers.",
             p2: "Peers exchange epoch marker messages to confirm that all historical operations prior to a given logical timestamp have been safely processed.",
-            code: "pub struct EpochManager {\n    current_epoch: u64,\n    acked_nodes: HashSet<NodeId>\n}",
+            code: "pub struct EpochManager {\n    current_epoch: u64,\n    acked_nodes: usize\n}",
             p3: "Epoch-based garbage collection prevents memory leaks and unbounded state growth in long-running collaborative projects."
         },
         {
             title: "Cryptographic Peer Routing Tables",
             p1: "Routing messages across decentralized topologies requires authenticated peer routing tables that prevent node spoofing and eclipse attacks.",
             p2: "Each route entry is validated via cryptographic signatures, ensuring packets traverse genuine network paths verified by the local node.",
-            code: "pub struct SecureRoutingTable {\n    entries: HashMap<PeerId, VerifiedRoute>\n}",
+            code: "pub struct SecureRoutingTable {\n    routes: usize\n}",
             p3: "Secure routing tables protect distributed collaboration sessions against malicious packet redirection and man-in-the-middle sniffing."
         },
         {
             title: "Zero-Knowledge State Validity Proofs",
             p1: "Advanced enterprise security models require validating state modifications without exposing sensitive source code text contents to relay nodes.",
             p2: "Zero-knowledge proofs verify that local edits adhere to syntax rules and workspace permissions without revealing underlying character payloads.",
-            code: "pub struct ZkValidityProof {\n    proof_bytes: Vec<u8>,\n    public_inputs: Hash\n}",
+            code: "pub struct ZkValidityProof {\n    valid: bool\n}",
             p3: "Zk-proof integration enables absolute privacy compliance for government and defense engineering teams utilizing decentralized workspaces."
         },
         {
             title: "Byzantine Fault Tolerant Message Passing",
             p1: "Byzantine fault tolerance guarantees system reliability even when an arbitrary fraction of participating network nodes act maliciously or erratically.",
             p2: "Cryptographic quorums and multi-phase validation rounds ensure forged or corrupted message packets are rejected automatically by honest peers.",
-            code: "pub struct ByzantineMessageGuard {\n    quorum_threshold: usize\n}",
+            code: "pub struct ByzantineGuard {\n    threshold: usize\n}",
             p3: "BFT messaging safeguards large open-source collaborative networks against coordinated sabotage and rogue node injection."
         },
         {
             title: "State Machine Replication Determinism",
             p1: "Replicated state machines require absolute execution determinism across every participating node to prevent divergence in document states.",
             p2: "Floating-point math variations and non-deterministic thread scheduling are strictly prohibited within core command evaluation routines.",
-            code: "pub trait DeterministicCommand {\n    fn execute_strictly(&self, state: &mut WorkspaceState);\n}",
+            code: "pub trait DeterministicCommand {\n    fn execute(&self);\n}",
             p3: "Strict determinism guarantees that identical instruction streams produce identical state outcomes across heterogeneous hardware architectures."
         },
         {
             title: "Distributed File Watcher Event Aggregation",
             p1: "Monitoring massive directory trees across distributed systems generates floods of raw file system events that must be intelligently aggregated.",
             p2: "Debouncing and event coalescing engines group rapid file modifications into single atomic change notifications before broadcasting updates.",
-            code: "pub struct EventAggregator {\n    debounce_timer: Duration,\n    pending_events: Vec<FileEvent>\n}",
+            code: "pub struct EventAggregator {\n    debounce: u64\n}",
             p3: "Event aggregation prevents network saturation and CPU spikes during automated build or refactoring file modifications."
         },
         {
             title: "Multi-User Undo/Redo Tree Reconciliation",
             p1: "Linear undo stacks break down in multi-user sessions where peer edits overlap with local undo commands.",
             p2: "Multi-user undo trees isolate user-specific edit histories, allowing individuals to reverse their own changes without disturbing collaborator progress.",
-            code: "pub struct MultiUserUndoTree {\n    user_branches: HashMap<UserId, UndoStack>\n}",
+            code: "pub struct MultiUserUndoTree {\n    stacks: usize\n}",
             p3: "Robust undo reconciliation provides intuitive error recovery during complex team programming exercises."
         },
         {
             title: "Distributed Terminal Session Multiplexing",
             p1: "Embedding shared terminal sessions within collaborative workspaces requires multiplexing pseudo-terminal output streams across peer connections.",
             p2: "Terminal cell grids are synchronized efficiently, allowing multiple developers to view and interact with shared command-line build processes.",
-            code: "pub struct SharedTerminalSession {\n    pty_grid: CellGrid,\n    active_controllers: Vec<UserId>\n}",
+            code: "pub struct SharedTerminal {\n    active: bool\n}",
             p3: "Collaborative terminal multiplexing transforms remote debugging and server deployment into an interactive team activity."
         },
         {
             title: "Remote Debugging Adapter Protocol Bridges",
             p1: "Bridging standard Debug Adapter Protocol streams across decentralized networks enables synchronized multi-user breakpoint debugging.",
             p2: "DAP command payloads are encapsulated in secure peer packets, allowing remote team members to inspect variables and step through code together.",
-            code: "pub struct DapBridge {\n    adapter_process: Child,\n    client_sessions: Vec<PeerId>\n}",
+            code: "pub struct DapBridge {\n    active: bool\n}",
             p3: "Remote debugging bridges accelerate root-cause analysis during high-stakes production incident responses."
         },
         {
             title: "Decentralized Plugin Marketplace Distribution",
             p1: "Community extensions and themes are distributed across decentralized peer networks via cryptographically signed package manifests.",
             p2: "Package verification checks author signatures and dependency constraints automatically before installing extensions into local sandboxes.",
-            code: "pub struct PluginManifest {\n    package_name: String,\n    signature: Ed25519Signature\n}",
+            code: "pub struct PluginManifest {\n    signed: bool\n}",
             p3: "Decentralized distribution empowers extension creators to publish tools globally without relying on proprietary app store monopolies."
         },
         {
             title: "Compact State Representation Encodings",
             p1: "Minimizing network footprint requires highly optimized binary encodings that strip redundant metadata from collaborative patch payloads.",
             p2: "Run-length encoding and dictionary compression reduce data transmission sizes, ensuring rapid synchronization over cellular links.",
-            code: "pub fn encode_compact_patch(patch: &TextPatch) -> Vec<u8> {\n    CompactEncoder::to_bytes(patch)\n}",
+            code: "pub fn encode_compact() {\n    // Compact bytes\n}",
             p3: "Compact encodings maintain peak operational performance even when working over restricted remote network connections."
         },
         {
             title: "Simulated Latency and Partition Harnesses",
             p1: "Testing distributed collaboration resilience requires sophisticated simulation harnesses that inject artificial network latency and packet loss.",
             p2: "Automated test suites subject CRDT sync engines to severe network partitions to verify automatic recovery and convergence properties.",
-            code: "pub struct NetworkSimulator {\n    latency_ms: u64,\n    packet_drop_rate: f32\n}",
+            code: "pub struct NetworkSimulator {\n    latency: u64\n}",
             p3: "Rigorous simulation testing guarantees enterprise-grade reliability under real-world hostile network conditions."
         },
         {
             title: "Vector Clock Conflict Resolution Fallbacks",
             p1: "When vector clocks encounter unresolvable causal ambiguity, deterministic fallback rules break ties based on node ID ordering.",
             p2: "Tie-breaking rules ensure systems never deadlock or panic during rare concurrent race conditions across asynchronous client nodes.",
-            code: "pub fn resolve_clock_tie(a: &NodeId, b: &NodeId) -> Ordering {\n    a.cmp(b)\n}",
+            code: "pub fn resolve_tie() {\n    // Node ID cmp\n}",
             p3: "Deterministic fallbacks guarantee 100% operational uptime and zero crash proneness across all edge-case synchronization scenarios."
         },
         {
             title: "Dynamic Bandwidth Throttling Adaptation",
             p1: "Collaborative editors must adapt telemetry transmission frequencies dynamically when detecting constrained or congested network links.",
             p2: "Adaptive throttling reduces cursor telemetry packet rates while prioritizing zero-loss transmission for critical text modification patches.",
-            code: "pub struct BandwidthAdapter {\n    current_tier: NetworkTier\n}",
+            code: "pub struct BandwidthAdapter {\n    tier: u8\n}",
             p3: "Dynamic adaptation ensures smooth responsiveness across fluctuating Wi-Fi, cellular, and broadband network environments."
         },
         {
             title: "Encrypted State Checkpoint Verification",
             p1: "Periodic encrypted state checkpoints allow peers to verify document integrity against tampering or silent data corruption.",
             p2: "Merkle trees summarize document block states into compact cryptographic roots exchanged during routine background sync passes.",
-            code: "pub struct StateCheckpoint {\n    merkle_root: [u8; 32],\n    sequence_num: u64\n}",
+            code: "pub struct StateCheckpoint {\n    root: [u8; 32]\n}",
             p3: "Checkpoint verification ensures absolute data trustworthiness across long-term distributed storage repositories."
         },
         {
             title: "Peer Reputation and Trust Scoring",
             p1: "Decentralized networks benefit from local peer reputation scoring to isolate misbehaving or spamming connection endpoints.",
             p2: "Behavioral metrics track valid packet contributions versus malformed payloads, automatically downgrading trust levels for faulty nodes.",
-            code: "pub struct ReputationTracker {\n    scores: HashMap<PeerId, f32>\n}",
+            code: "pub struct ReputationTracker {\n    scores: usize\n}",
             p3: "Reputation scoring protects open collaborative clusters against denial-of-service attempts and malicious disruption."
         },
         {
             title: "Cross-Platform Path Normalization",
             p1: "Distributed development teams frequently collaborate across Windows, macOS, and Linux environments with differing file path conventions.",
             p2: "Path normalization layers convert backslashes, case sensitivities, and root separators into unified internal URI representations.",
-            code: "pub fn normalize_file_path(raw: &str) -> WorkspacePath {\n    PathNormalizer::to_unix_standard(raw)\n}",
+            code: "pub fn normalize_path() {\n    // Unix standard\n}",
             p3: "Seamless path normalization prevents file access errors and broken references across mixed-operating-system project teams."
         },
         {
@@ -552,15 +552,148 @@
             title: "Decentralized Session Discovery Beacons",
             p1: "Impromptu peer-to-peer coding sessions utilize encrypted UDP broadcast beacons to announce active workspace availability on local subnets.",
             p2: "Nearby developers discover open sessions instantly within their editor sidebar without manual IP address entry or cloud setup.",
-            code: "pub struct DiscoveryBeacon {\n    port: u16,\n    session_name: String\n}",
+            code: "pub struct DiscoveryBeacon {\n    port: u16\n}",
             p3: "Beacon broadcasting delivers zero-friction local collaboration for classroom environments and office hackathons."
         },
         {
-            title: "Production Release and Enterprise Scaling",
-            p1: "Deploying Zed distributed systems into Fortune 500 enterprise environments requires robust monitoring, auditing, and compliance tooling.",
-            p2: "Comprehensive telemetry logging and administrative audit trails ensure adherence to corporate security and governance standards.",
-            code: "pub fn initialize_enterprise_audit_log() -> Result<AuditLogger> {\n    AuditLogger::init_secure_sink()\n}",
-            p3: "This concludes Volume 3. The architecture of advanced distributed collaboration is complete, setting the stage for plugin ecosystems in Volume 4."
+            title: "Distributed Lock-Free Queue Mechanics",
+            p1: "Managing high-frequency task dispatches across background worker threads requires lock-free multi-producer multi-consumer queues.",
+            p2: "Atomic CAS primitives eliminate contention bottlenecks, allowing worker threads to enqueue and dequeue tasks with zero operating system locks.",
+            code: "pub struct LockFreeQueue<T> {\n    head: AtomicPtr<Node<T>>,\n    tail: AtomicPtr<Node<T>>\n}",
+            p3: "Lock-free queue structures ensure maximum CPU cache efficiency and predictable execution latency during heavy compilation tasks."
+        },
+        {
+            title: "Memory Arena Slab Allocation Strategies",
+            p1: "Slab allocators group identically sized memory objects into contiguous blocks, eliminating internal fragmentation and allocation overhead.",
+            p2: "Pre-allocated slab chunks allow fast O(1) allocation and deallocation passes for short-lived syntax nodes and event tokens.",
+            code: "pub struct SlabAllocator<T> {\n    chunks: Vec<Box<[T]>>,\n    free_list: Vec<usize>\n}",
+            p3: "Slab allocation patterns keep memory footprints tightly bounded and cache-friendly throughout intensive syntax analysis phases."
+        },
+        {
+            title: "Asynchronous Future Combinators in Rust",
+            p1: "Composing complex asynchronous workflows requires efficient future combinators that chain file I/O, network streams, and UI events.",
+            p2: "Zero-cost async state machines compiled by the Rust compiler optimize execution paths without heap-allocating closure environments.",
+            code: "pub async fn compose_workflows<F>(f: F) -> Result<()> \nwhere F: Future<Output = Result<()>> {\n    f.await\n}",
+            p3: "Robust async combinators simplify concurrency management while maintaining peak hardware performance across all application tiers."
+        },
+        {
+            title: "SIMD Vectorized Byte Searching",
+            p1: "Locating newline characters, delimiters, or search queries within multi-megabyte text buffers demands hardware-accelerated SIMD routines.",
+            p2: "Processing 64 bytes simultaneously using AVX-512 vector registers accelerates text scanning operations by an order of magnitude.",
+            code: "pub fn simd_find_byte(data: &[u8], target: u8) -> Option<usize> {\n    avx512_scan(data, target)\n}",
+            p3: "SIMD vectorization ensures instant response times during large-scale document searches and regular expression matching passes."
+        },
+        {
+            title: "Persistent Immutable Data Structures",
+            p1: "Persistent data structures preserve previous versions of collection states upon modification through efficient structural sharing.",
+            p2: "Hash array mapped tries provide near-O(1) lookup and update performance while sharing unmutated branches across history snapshots.",
+            code: "pub struct PersistentMap<K, V> {\n    root: Option<Rc<Node<K, V>>>,\n    size: usize\n}",
+            p3: "Immutable collections provide a reliable foundation for undo stacks, configuration management, and concurrent state rollbacks."
+        },
+        {
+            title: "Hardware Performance Counter Profiling",
+            p1: "Identifying elusive hardware cache misses and branch mispredictions requires integrating CPU performance counter monitoring tools.",
+            p2: "Real-time profiling instrumentation measures exact instruction retirement rates and memory bandwidth saturation during code editing.",
+            code: "pub struct PerfProfiler {\n    counters: HardwareCounters\n}",
+            p3: "Performance counter profiling empowers developers to eliminate hidden hardware bottlenecks before deployment to production."
+        },
+        {
+            title: "GPU Shader Uniform Buffer Updates",
+            p1: "Rendering high-performance UI elements requires streaming dynamic color palettes and layout uniforms directly to GPU uniform buffers.",
+            p2: "Mapping GPU memory ranges efficiently avoids driver stalls and ensures ultra-smooth 120 FPS rendering across complex layouts.",
+            code: "pub fn update_uniforms(queue: &wgpu::Queue, buffer: &wgpu::Buffer, data: &[u8]) {\n    queue.write_buffer(buffer, 0, data);\n}",
+            p3: "Optimized uniform streaming maintains buttery-smooth window resizing and theme transition animations under heavy system load."
+        },
+        {
+            title: "Zero-Allocation Formatting Buffers",
+            p1: "String formatting operations in inner rendering loops frequently trigger unnecessary heap allocations if not managed carefully.",
+            p2: "Stack-allocated formatting buffers write formatted numeric and string data directly into target byte arrays with zero heap overhead.",
+            code: "pub struct StackBuffer<const N: usize> {\n    data: [u8; N],\n    len: usize\n}",
+            p3: "Zero-allocation string formatting prevents garbage collection pressure and maintains flat, deterministic execution timelines."
+        },
+        {
+            title: "Atomic Reference Count Optimization",
+            p1: "Sharing read-only configuration assets across threads requires thread-safe reference counting with minimal atomic contention.",
+            p2: "Optimized reference counters utilize relaxed memory ordering where strict synchronization barriers are unnecessary for safety.",
+            code: "pub struct ArcCache<T> {\n    inner: Arc<T>,\n    version: usize\n}",
+            p3: "Relaxed atomic operations reduce CPU bus locking overhead, maximizing multi-core scaling efficiency across background workers."
+        },
+        {
+            title: "Custom Allocator Global Interception",
+            p1: "Monitoring application memory consumption and detecting memory leaks requires intercepting global allocation requests via custom allocators.",
+            p2: "Custom global allocator wrappers track total allocated bytes and peak memory usage across every subsystem in the editor runtime.",
+            code: "#[global_allocator]\nstatic GLOBAL: TrackingAllocator = TrackingAllocator::new();",
+            p3: "Global allocation tracking provides deep visibility into memory usage patterns, ensuring optimal resource efficiency on constrained devices."
+        },
+        {
+            title: "Thread Pool Work Stealing Architecture",
+            p1: "Maximizing CPU core utilization across unbalanced computational workloads requires advanced work-stealing thread pool designs.",
+            p2: "Idle worker threads steal pending tasks from busy worker queues automatically, maintaining balanced core utilization during builds.",
+            code: "pub struct WorkStealingPool {\n    workers: Vec<WorkerThread>,\n    global_queue: ConcurrentQueue<Task>\n}",
+            p3: "Work-stealing architectures prevent core starvation and guarantee maximum throughput during parallelized code analysis tasks."
+        },
+        {
+            title: "Zero-Cost Abstractions in Systems Design",
+            p1: "Zero-cost abstractions ensure high-level generic programming compiles down to machine code as efficient as hand-written assembly.",
+            p2: "Compiler monomorphization and inlining eliminate dynamic dispatch overhead, enabling expressive code structure without performance penalties.",
+            code: "pub trait Renderable {\n    fn render(&self, canvas: &mut Canvas);\n}",
+            p3: "Zero-cost abstractions empower developers to build modular, maintainable systems without sacrificing microsecond execution budgets."
+        },
+        {
+            title: "Comprehensive Error Handling Patterns",
+            p1: "Robust systems software demands explicit error handling types that propagate failures without triggering panic conditions.",
+            p2: "Custom error enums provide detailed diagnostic context while integrating seamlessly with standard Result propagation operators.",
+            code: "pub enum ZedError {\n    Io(std::io::Error),\n    Protocol(String),\n    Sync(SyncConflict)\n}",
+            p3: "Precise error management ensures graceful recovery and informative diagnostic logging during unexpected operational failures."
+        },
+        {
+            title: "Deterministic Replay Testing Frameworks",
+            p1: "Debugging complex race conditions in distributed systems requires deterministic replay testing frameworks that record execution traces.",
+            p2: "Replaying recorded event logs under identical scheduling conditions allows engineers to reproduce and fix elusive concurrency bugs instantly.",
+            code: "pub struct ReplayEngine {\n    event_log: Vec<TimestampedEvent>\n}",
+            p3: "Deterministic replay transforms chaotic distributed debugging sessions into repeatable, methodical engineering tasks."
+        },
+        {
+            title: "Cross-Platform Window Management APIs",
+            p1: "Interfacing directly with native windowing systems across Windows, macOS, and Linux requires unified platform abstraction layers.",
+            p2: "Handling DPI scaling, VSync synchronization, and input event dispatching natively ensures consistent user experience across platforms.",
+            code: "pub struct NativeWindowHandle {\n    hwnd: PlatformWindowId,\n    display: DisplayContext\n}",
+            p3: "Unified window management bridges platform disparities while maintaining direct access to native operating system capabilities."
+        },
+        {
+            title: "Advanced Profiling and Telemetry Suites",
+            p1: "Enterprise performance optimization requires detailed profiling suites that measure frame render times and thread execution latency.",
+            p2: "Aggregated telemetry metrics provide actionable insights into real-world application performance across diverse user hardware configurations.",
+            code: "pub struct TelemetryCollector {\n    metrics: HashMap<MetricKey, Histogram>\n}",
+            p3: "Comprehensive telemetry drives continuous performance improvements and architectural refinement across successive engine releases."
+        },
+        {
+            title: "Automated Regression Testing Pipelines",
+            p1: "Maintaining strict performance guarantees across rapid release cycles requires automated regression testing pipelines running on every commit.",
+            p2: "Performance benchmarks fail builds automatically if execution latency or memory consumption exceeds established threshold limits.",
+            code: "pub fn benchmark_render_loop(bencher: &mut Bencher) {\n    bencher.iter(|| run_frame_budget());\n}",
+            p3: "Automated regression pipelines safeguard software quality and prevent accidental performance degradation during feature development."
+        },
+        {
+            title: "Modular Extension Architecture Design",
+            p1: "Extensible software architectures rely on clean modular boundaries that allow community developers to contribute themes, linters, and tools.",
+            p2: "Strict API versioning and capability sandboxing ensure third-party extensions never compromise core editor stability or performance.",
+            code: "pub trait ExtensionModule {\n    fn activate(&self, context: &mut WorkspaceContext);\n}",
+            p3: "Modular extension design fosters a vibrant ecosystem of community tools while preserving the uncompromising speed of the core engine."
+        },
+        {
+            title: "Memory Safety Without Garbage Collection",
+            p1: "Achieving absolute memory safety without stop-the-world garbage collection pauses requires strict compile-time ownership tracking.",
+            p2: "Affine type systems and lifetime annotations guarantee memory safety and data race prevention at zero runtime cost.",
+            code: "pub fn process_buffer<'a>(buf: &'a mut RopeBuffer, edit: TextEdit) -> &'a mut RopeBuffer {\n    buf.apply(edit);\n    buf\n}",
+            p3: "Compile-time safety eliminates entire classes of memory corruption vulnerabilities, establishing a rock-solid foundation for enterprise software."
+        },
+        {
+            title: "Future Horizons in Distributed Editors",
+            p1: "As computing hardware evolves toward massive multi-core architectures and quantum acceleration, distributed editing systems will adapt.",
+            p2: "The foundational principles established in this manual—zero latency, hardware respect, and CRDT convergence—will endure as industry standards.",
+            code: "pub fn initialize_future_architecture() -> Result<()> {\n    EngineCore::boot_next_generation()\n}",
+            p3: "This concludes Volume 3. The comprehensive manual on distributed collaboration systems is complete, establishing a new paradigm for software engineering."
         }
     ];
 
