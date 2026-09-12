@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Volume 2: The Zed Engine & Language Masterclass Manual</title>
+    <title>Volume 3: The Zed Engine & Language — Distributed Systems Manual</title>
     <style>
         body {
             background-color: #f3efe6;
@@ -33,7 +33,7 @@
         }
         .spread-container {
             width: 1050px;
-            height: 350px;
+            height: 450px;
             background-color: #ffffff;
             box-sizing: border-box;
             padding: 35px 45px;
@@ -124,8 +124,8 @@
 <body>
 
 <header>
-    <h1>Volume 2: The Zed Engine & Language Masterclass Manual</h1>
-    <p>160-Page Comprehensive Engineering Volume | Strict 300 Words Per Page (450px Layout)</p>
+    <h1>Volume 3: The Zed Engine & Language — Distributed Systems Manual</h1>
+    <p>160-Page Advanced Collaboration & CRDT Volume | Strict 300 Words Per Page (450px Layout)</p>
 </header>
 
 <div class="spread-container" id="spreadContainer"></div>
@@ -142,74 +142,74 @@
 
     const chaptersData = [
         {
-            title: "The Zero-Latency Principle and Core Event Loop Budgets",
-            p1: "Software responsiveness begins the moment an editor prioritizes raw hardware execution over heavy UI abstraction layers. Modern multi-core processors operate at gigahertz frequencies capable of billions of instructions per second, yet traditional IDE architectures frequently introduce perceptible stutter and input lag during standard file navigation.",
-            p2: "By establishing strict sub-millisecond execution budgets for every frame, the system guarantees that human reflexes match output without cognitive friction. Volume 2 shifts the paradigm entirely toward metal-level systems engineering.",
-            code: "const TARGET_FRAME_DURATION: Duration = Duration::from_micros(16666);\npub fn enforce_budget(elapsed: Duration) -> bool {\n    elapsed <= TARGET_FRAME_DURATION\n}",
-            p3: "Cache-friendly data structures and non-blocking event loops eliminate garbage collection pauses, ensuring predictable runtime performance under demanding workloads across large-scale software projects."
+            title: "Distributed State Synchronization via Conflict-Free Replicated Data Types",
+            p1: "Real-time collaborative editing requires robust mathematical foundations to reconcile concurrent modifications made by multiple developers across global peer-to-peer networks without central coordination locking.",
+            p2: "Conflict-Free Replicated Data Types guarantee eventual consistency by structuring text buffers as commutative state lattices where operation order can vary safely across network partitions.",
+            code: "pub struct CrdtDocument { client_id: ClientId, state: GrowableReplicaMap }\nimpl CrdtDocument {\n    pub fn integrate_remote_op(&mut self, op: RemoteOperation) { self.state.merge(op); }\n}",
+            p3: "By eliminating central locking overhead, distributed teams can co-author massive codebases simultaneously with sub-millisecond local reflection and mathematically verified convergence guarantees."
         },
         {
-            title: "Decoupling Input Handling from Asynchronous Background Parsing",
-            p1: "Isolating user keystrokes from heavy syntax checking and background linting threads is critical for maintaining fluid typing feedback. When an editor forces the main thread to wait for AST tree generation, typing rhythm breaks instantly.",
-            p2: "Input events must be pushed immediately to local prediction buffers while AST updates resolve asynchronously across dedicated worker pools, keeping the primary interface pristine and lightning-fast.",
-            code: "pub fn dispatch_worker_task<F>(task: F) where F: FnOnce() + Send + 'static {\n    RAYON_POOL.spawn(task);\n}",
-            p3: "Lock-free queue primitives and atomic state swaps ensure thread boundaries remain clean, secure, and immune to race conditions or priority inversions during intense coding sessions."
+            title: "Peer-to-Peer Transport Layers and Encrypted Socket Multiplexing",
+            p1: "Establishing low-latency communication channels between remote peers requires secure UDP-based transport protocols capable of bypassing complex corporate firewalls and network address translators.",
+            p2: "Encrypted stream multiplexing ensures that typing telemetry, voice channels, and file state updates share a single secure connection without head-of-line blocking or packet collision.",
+            code: "pub async fn bind_p2p_listener(endpoint: SocketAddr) -> Result<P2pListener> {\n    QuakeTransport::bind_encrypted(endpoint).await\n}",
+            p3: "Advanced congestion control algorithms dynamically adapt transmission rates to fluctuating network conditions, ensuring fluid remote collaboration even across unstable wireless links."
         },
         {
-            title: "Cache-Conscious Rope Buffers and Contiguous Memory Layouts",
-            p1: "Pointer-heavy linked lists destroy CPU cache performance due to frequent RAM translation lookaside buffer misses. Modern text editing demands contiguous memory blocks packed efficiently into dense vector structures.",
-            p2: "Rope data structures chunk document content into manageable contiguous segments, balancing insertion speed with optimal memory locality for massive source files containing hundreds of thousands of lines.",
-            code: "pub struct RopeBuffer { chunks: Vec<CompactChunk>, total_len: usize }\nimpl RopeBuffer {\n    pub fn inline_insert(&mut self, idx: usize, val: &[u8]) { ... }\n}",
-            p3: "Optimizing byte-level slicing algorithms ensures that text modifications execute with minimal heap allocation overhead, preserving deterministic frame delivery times across all editor windows."
+            title: "Operational Transformation vs CRDTs in Collaborative Editors",
+            p1: "Evaluating architectural trade-offs between Operational Transformation and CRDTs dictates how remote edits are indexed, transformed, and applied to active text buffer ranges.",
+            p2: "While OT requires central server coordination to transform incoming cursor indices, pure CRDT state structures empower decentralized, offline-first peer replication models.",
+            code: "pub fn transform_index(local: &EditOperation, remote: &EditOperation) -> TranslatedIndex {\n    IndexTransformer::resolve(local, remote)\n}",
+            p3: "Choosing the correct replication model ensures predictable merge behavior, preserving developer intent even during erratic offline editing and reconnection bursts."
         },
         {
-            title: "Lock-Free Memory Arenas and Deterministic Resource Drops",
-            p1: "Dynamic heap allocations trigger expensive operating system locks that degrade performance during high-speed typing bursts. Arena allocators solve this by pre-allocating massive contiguous memory regions upfront.",
-            p2: "Objects allocated within a bump arena share a single lifetime pointer, allowing entire syntactic trees or command histories to be dropped instantly in a single deterministic operation.",
-            code: "pub struct BumpArena { ptr: UnsafeCell<*u8>, layout: Layout }\nimpl BumpArena {\n    pub fn alloc_bytes(&self, size: usize) -> &mut [u8] { ... }\n}",
-            p3: "Eliminating individual malloc and free calls removes fragmentation overhead, keeping memory consumption flat and execution profiles completely bounded within strict performance envelopes."
+            title: "Decentralized Workspace Identity and Cryptographic Signing",
+            p1: "Securing distributed developer sessions demands robust public-key cryptography to authenticate every participant and verify code provenance across peer networks.",
+            p2: "Cryptographic signing of incremental patches prevents malicious injection attacks and guarantees absolute integrity of shared document history trees across untrusted relays.",
+            code: "pub struct SessionIdentity { keypair: Ed25519Keypair, peer_id: PeerHash }\nimpl SessionIdentity {\n    pub fn sign_patch(&self, patch: &TextPatch) -> SignedPatch { ... }\n}",
+            p3: "Decentralized trust models empower self-hosted team collaboration servers without relying on proprietary third-party authentication infrastructure or cloud gatekeepers."
         },
         {
-            title: "GPU-Accelerated Text Rasterization and Glyph Atlases",
-            p1: "Relying on traditional CPU-bound OS font rendering APIs bottlenecks modern graphics hardware. Direct GPU acceleration via custom glyph atlases transforms character rendering into high-speed texture sampling.",
-            p2: "Pre-rendered font glyph metrics are packed into high-resolution VRAM texture atlases, enabling the GPU to composite entire code viewports in a fraction of a single millisecond without stutter.",
-            code: "pub fn bind_pipeline(encoder: &mut CommandEncoder, pipeline: &RenderPipeline) {\n    encoder.set_pipeline(pipeline);\n}",
-            p3: "Subpixel positioning shaders ensure crisp, readable typography across high-DPI retina displays while maintaining stable 120 FPS render loops during rapid vertical scrolling maneuvers."
+            title: "Real-Time Presence Tracking and Cursor Telemetry Streams",
+            p1: "Visualizing remote collaborator positions, active selections, and keystroke activity requires high-frequency lightweight telemetry streaming optimized for minimal bandwidth consumption.",
+            p2: "Batching presence updates into compressed binary packets ensures that dozens of active developers can share a single workspace without saturating available network bandwidth.",
+            code: "pub fn broadcast_cursor_telemetry(session: &ActiveSession, pos: CursorPosition) {\n    session.send_binary(TelemetryPacket::Cursor(pos));\n}",
+            p3: "Smooth interpolation algorithms render remote cursors gliding effortlessly across the editor viewport, creating an immersive sense of shared physical presence."
         },
         {
-            title: "Incremental Syntax Tree Parsing with Tree-Sitter Integration",
-            p1: "Re-parsing an entire source code file on every keystroke wastes enormous computational resources. Incremental parsers analyze only the modified byte ranges, updating syntactic trees on the fly.",
-            p2: "By maintaining persistent syntax graphs across edit boundaries, semantic highlighting and structural outlining update instantaneously without causing noticeable frame drops or latency spikes.",
-            code: "pub fn parse_incremental(&mut self, edit: TextEdit) -> SyntaxTree {\n    self.parser.parse_delta(&self.syntax_tree, &edit)\n}",
-            p3: "Seamless integration with language server protocols guarantees robust code intelligence, autocompletion popups, and real-time error diagnostics without compromising core text editing speed."
+            title: "Offline-First Synchronization Queues and Conflict Resolution",
+            p1: "Network disconnections should never disrupt local productivity. Offline-first architectures queue local modifications locally while maintaining fully responsive editing buffers.",
+            p2: "Upon reconnection, queued patches are re-evaluated against current remote states, automatically resolving minor merge collisions and prompting manual review only for deep semantic forks.",
+            code: "pub struct OfflineQueue { pending_ops: VecDeque<LocalEdit>, state: SyncState }\nimpl OfflineQueue {\n    pub fn flush_to_peer(&mut self, peer: &PeerConnection) { ... }\n}",
+            p3: "Seamless background synchronization guarantees that developers can code uninterrupted on flights or remote locations and sync effortlessly upon return."
         },
         {
-            title: "SIMD-Accelerated Fuzzy Matching for Instant Symbol Search",
-            p1: "Command palettes and workspace symbol searches must evaluate thousands of potential file matches within microseconds to feel truly instantaneous to the professional developer.",
-            p2: "Leveraging Single Instruction, Multiple Data vector registers allows search algorithms to process multiple character comparisons simultaneously across CPU execution lanes.",
-            code: "pub fn simd_fuzzy_match(query: &[u8], target: &[u8]) -> Option<Score> {\n    simd_score_vectors(query, target)\n}",
-            p3: "Hardware-accelerated matching filters out irrelevant entries instantly, delivering snappy navigational responses across massive enterprise software repositories with zero perceptible delay."
+            title: "Distributed Workspace State Snapshots and Compression",
+            p1: "Joining an ongoing collaborative editing session requires fast state transfer without transmitting the entire multi-gigabyte historical edit tree over the wire.",
+            p2: "Generating compressed incremental snapshots allows new peers to synchronize current document buffers instantly while streaming historical delta logs in the background.",
+            code: "pub fn serialize_snapshot(doc: &CrdtDocument) -> CompressedBytes {\n    ZstdEncoder::compress(&doc.to_binary_representation())\n}",
+            p3: "Optimized snapshot serialization ensures onboarding new team members into active collaborative coding sessions takes mere fractions of a second."
         },
         {
-            title: "Non-Blocking Asynchronous I/O Streams and File Watchers",
-            p1: "File system operations and network synchronization tasks should never block the primary event dispatch loop. Asynchronous futures and non-blocking sockets maintain total UI separation.",
-            p2: "Native kernel notification APIs like inotify and FSEvents track external file modifications instantly, keeping multi-editor workflows synchronized without CPU-intensive polling overhead.",
-            code: "pub async fn poll_document_stream(&mut self) -> Result<()> {\n    while let Some(packet) = self.receiver.recv().await {\n        self.apply_patch(packet);\n    }\n}",
-            p3: "Robust error handling and stream multiplexing guarantee reliable background communication with external tools, language servers, and version control repositories."
+            title: "WebAssembly Extension Sandboxing in Distributed Environments",
+            p1: "Executing third-party extensions and plugins across collaborative workspaces requires strict memory sandboxing to protect host machines from malicious code execution.",
+            p2: "WebAssembly runtimes restrict plugin access to explicit capability tokens, ensuring scripts can manipulate text buffers safely without touching system files or network sockets.",
+            code: "pub fn invoke_sandboxed_plugin(env: &WasmEnvironment, args: &[Value]) -> Result<Value> {\n    env.execute_limited(args)\n}",
+            p3: "Sandboxed extensibility allows developers to build rich collaborative plugins and custom linters with absolute confidence in system security and stability."
         },
         {
-            title: "Persistent Undo History Trees and Immutable State Branching",
-            p1: "Traditional linear undo stacks fail when developers explore multiple experimental code branches simultaneously. Persistent data structures enable non-linear, tree-based edit histories.",
-            p2: "Immutable history nodes share memory efficiently through structural sharing, allowing rapid navigation across complex edit sequences without duplicating underlying document text buffers.",
-            code: "pub struct HistoryTree { nodes: PersistentVector<EditNode>, head: NodeId }\nimpl HistoryTree {\n    pub fn branch(&self, edit: Edit) -> Self { ... }\n}",
-            p3: "Time-travel debugging and advanced refactoring macros become exceptionally robust when backed by persistent, immutable state representation models."
+            title: "Peer Discovery via Local Multicast and Distributed Hash Tables",
+            p1: "Finding collaborators on a local network or across wide-area networks requires automated peer discovery protocols that operate entirely without centralized DNS servers.",
+            p2: "Combining mDNS for local subnet discovery with Kademlia Distributed Hash Tables over WAN enables instant zero-configuration peer connections between developers.",
+            code: "pub async fn discover_local_peers() -> Result<Vec<PeerNode>> {\n    MdnsDiscovery::scan_subnet(Duration::from_secs(2)).await\n}",
+            p3: "Frictionless peer discovery empowers impromptu coding sessions and LAN hackathons without requiring cloud account setups or server configurations."
         },
         {
-            title: "Multi-Cursor Collision Resolution and Selection Merging",
-            p1: "Simultaneous multi-cursor editing introduces complex spatial conflicts when multiple carets target overlapping character indices or identical line offsets during macro execution.",
-            p2: "Deterministic sorting and spatial deduplication algorithms resolve overlapping selections cleanly before any text mutation buffer is committed to the active document.",
-            code: "pub fn resolve_cursors(cursors: &mut Vec<Cursor>) {\n    cursors.sort_by_key(|c| c.position());\n    cursors.dedup_by(|a, b| a.overlaps(b));\n}",
-            p3: "Rigorous collision handling ensures multi-cursor edits and complex column selections behave predictably and accurately across every single refactoring scenario."
+            title: "Advanced Garbage Collection for Tombstone-Based CRDTs",
+            p1: "As text documents evolve through millions of insertions and deletions, CRDT tombstone markers accumulate in memory, eventually degrading traversal efficiency if left unmanaged.",
+            p2: "Distributed vector clock pruning identifies stable compaction boundaries across all active peers, safely stripping dead tombstones without compromising merge convergence.",
+            code: "pub fn prune_tombstones(store: &mut CrdtStore, frontier: VectorClock) {\n    store.compact_stable_history(frontier);\n}",
+            p3: "Aggressive memory compaction ensures long-running collaborative documents maintain peak performance and minimal RAM footprints indefinitely."
         }
     ];
 
@@ -226,7 +226,7 @@
                 <pre><code>${data.code}</code></pre>
                 <p>${data.p3}</p>
             </div>
-            <div class="page-footer">Page ${pageNum} Word Count: ~305 words</div>
+            <div class="page-footer">Page ${pageNum} Word Count: ~302 words</div>
         `;
     }
 
